@@ -1,9 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import LoginImg from '../../assets/VideoIMGLogin.png'
 import { Link } from 'react-router-dom'
 
 
 const SignUp = () => {
+    const [SignUpData, SetSignUpData] = useState({
+        username: '',
+        email: '',
+        password: ''
+    })
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        SetSignUpData((prevFormData) => ({
+          ...prevFormData,
+          [name]: value,
+        }));
+    };
+
+    const headleSignUp = (e) => {
+        e.preventDefault()
+
+        try{
+            console.log(SignUpData)
+        }
+        catch(err){
+            console.log(err)
+        }
+    }
   return (
     <div className='bg-[#161d30] min-h-screen text-white pt-28'>
         <div className="">
@@ -15,21 +39,21 @@ const SignUp = () => {
                             <h1 className="text-xl font-semibold text-center pt-8">Create Account</h1>
 
                             <div className="my-4 mx-4">
-                                <form  method="post">
+                                <form onSubmit={headleSignUp} method="post">
                                     <div className="">
                                         <p className="text-[#AD63FF] text-xl pb-2">Username : </p>
-                                        <input type="text" name="" id="" className="w-full h-12 rounded bg-[#161d30] pl-2 mr-2" required placeholder='Username'/>
+                                        <input type="text" name="username" value={SignUpData.username} onChange={handleChange} id="" className="w-full h-12 rounded bg-[#161d30] pl-2 mr-2" required placeholder='Username'/>
                                     </div>
 
                                     <div className="my-4">
                                         <p className="text-[#AD63FF] text-xl pb-2">Email : </p>
-                                        <input type="email" name="" id="" className="w-full h-12 rounded bg-[#161d30] pl-2 mr-2" required placeholder='Email Address'/>
+                                        <input type="email" name="email" value={SignUpData.email} onChange={handleChange} id="" className="w-full h-12 rounded bg-[#161d30] pl-2 mr-2" required placeholder='Email Address'/>
                                     </div>
 
                                     
                                     <div className="my-4">
                                         <p className="text-[#AD63FF] text-xl pb-2">Password : </p>
-                                        <input type="password" name="" id="" className="w-full h-12 rounded bg-[#161d30] pl-2 mr-2" required placeholder='Password'/>
+                                        <input type="password" name="password" value={SignUpData.password} onChange={handleChange} id="" className="w-full h-12 rounded bg-[#161d30] pl-2 mr-2" required placeholder='Password'/>
                                     </div>
 
                                     <div className="my-6">
