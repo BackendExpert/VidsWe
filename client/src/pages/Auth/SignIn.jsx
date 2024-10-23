@@ -30,7 +30,8 @@ const SignIn = () => {
                     localStorage.setItem('token', res.data.Token)
                     navigate('/Dashboard/home')
                     secureLocalStorage.setItem('Login1', res.data.Result.email)
-                    secureLocalStorage.setItem('Login2', res.data.Result.Role)    
+                    secureLocalStorage.setItem('Login2', res.data.Result.Role)   
+                    window.location.reload() 
                 }
                 else{
                     alert(res.data.Error)

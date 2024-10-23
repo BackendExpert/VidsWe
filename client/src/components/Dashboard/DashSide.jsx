@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { BsChevronUp, BsChevronDown, BsGearFill, BsList, BsSpeedometer2, BsX, BsPersonFill, BsPeople } from "react-icons/bs";
+import { BsChevronUp, BsChevronDown, BsGearFill, BsList, BsSpeedometer2, BsX, BsPersonFill, BsPeople, BsCameraVideoFill } from "react-icons/bs";
 import secureLocalStorage from "react-secure-storage";
+import SiteLogo from '../../assets/Logo.png'
 
 const DashSide = () => {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ const DashSide = () => {
 
   const logout = () => {
     localStorage.clear();
+    navigate('/SignIn')
     window.location.reload();
   };
 
@@ -28,11 +30,11 @@ const DashSide = () => {
   const SideMenu = [
     { id: 1, name: "Dashboard", link: '/Dashboard/Home', icon: <BsSpeedometer2 className='h-5 w-auto fill-[#fdbd44] hover:fill-white' /> },
     {
-      id: 2, name: "Repository", icon: <BsPeople className='h-5 w-auto fill-[#29c770]' />, submenu: [
-        { id: 1, name: "Create Repository", link: '/Dashboard/NewRepository' },
-        { id: 2, name: "Public Repository", link: '/Dashboard/MyPublicRepo' },
-        { id: 3, name: "Private Repository", link: '/Dashboard/MyPrivateRepo' },
-        { id: 4, name: "Achive Repository", link: '/Dashboard/MyAchiveRepo' },
+      id: 2, name: "Videos", icon: <BsCameraVideoFill className='h-5 w-auto fill-[#29c770]' />, submenu: [
+        { id: 1, name: "Create Videos", link: '/Dashboard/NewVideos' },
+        { id: 2, name: "Public Videos", link: '/Dashboard/MyPublicVideos' },
+        { id: 3, name: "Private Videos", link: '/Dashboard/MyPrivateVideos' },
+        { id: 4, name: "Achive Videos", link: '/Dashboard/MyAchiveVideos' },
       ]
     },
     {
@@ -58,14 +60,13 @@ const DashSide = () => {
         {!isOpen ? <BsList /> : <BsX />}
       </button>
       <div className={`md:min-w-74 md:max-w-64 w-full md:w-auto h-screen md:relative fixed top-0 left-0 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 transition-transform duration-300 ease-in-out`}>
-        <div className="md:bg-transparent  bg-[#292f45] py-2 text-white">
+        <div className="md:bg-transparent bg-[#141c30] py-2 text-white">
           <div className="my-4">
-            {/* <center>
-              <img src={ProfileImg} alt="" className='h-32 w-auto rounded-full' />
-            </center> */}
+            <div className="flex">
+                <img src={SiteLogo} alt="" className='h-20 w-auto rounded-full' />
+                <h1 className="text-xl mt-6 font-semibold text-purple-500">VidsWe.com</h1>
+            </div>
             <div className="text-center">
-              <h1 className="mt-4 font-semibold text-xl">JehnaKandy</h1>
-              <p className="pt-4 mx-4">Founder and CEO at JKCSS and First Git Platform in Sri Lanka. Founder and CEO at JKCSS and First Git Platform in Sri Lanka.</p>
               <h1 className=""></h1>
               <p className=""></p>
             </div>
