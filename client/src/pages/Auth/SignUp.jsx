@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import LoginImg from '../../assets/VideoIMGLogin.png'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
 
 
 const SignUp = () => {

@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const ConnectDB = require('./Config/DB');
 
 // all routes
-
+const AuthRoute =  require('./Routes/AuthRoute')
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -25,7 +25,12 @@ app.get('/', (req, res) => {
     res.send(`Server running on port ${PORT}`);
 });
 
-const repoPath = path.join(__dirname, './repositories');
+const repoPath = path.join(__dirname, './videos');
+
+
+app.use('/Auth', AuthRoute)
+
+
 
 
 app.listen(PORT, () => {
