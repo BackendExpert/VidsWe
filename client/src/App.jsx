@@ -5,6 +5,8 @@ import NavBar from "./components/Navbars/NavBar";
 import Footer from "./components/Footers/Footer";
 import SignIn from "./pages/Auth/SignIn";
 import SignUp from "./pages/Auth/SignUp";
+import Dashboard from "./components/Dashboard/Dashboard";
+import DashHome from "./pages/Dashboard/DashHome";
 
 export default function App() {
   const [showNavBar, setShowNavBar] = useState(true);
@@ -43,6 +45,9 @@ export default function App() {
           <Route path="/" element={<HomePage /> } />
           <Route path="/SignIn" element={<SignIn /> } />
           <Route path="/SignUp" element={<SignUp /> } />
+          <Route path="/Dashboard/" element={<Dashboard /> } >
+            <Route path="Home" element={<DashHome /> } />
+          </Route>
         </Routes>
         <Footer />
       </BrowserRouter>

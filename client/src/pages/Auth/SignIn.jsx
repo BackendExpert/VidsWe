@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import LoginImg from '../../assets/VideoIMGLogin.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 import secureLocalStorage from 'react-secure-storage'
 
 const SignIn = () => {
+    const navigate = useNavigate()
     const [SignInData, SetSignData] = useState({
         email: '',
         password: '',
@@ -22,7 +23,7 @@ const SignIn = () => {
         e.preventDefault()
 
         try{
-            const res = await axios.post(import.meta.env.VITE_APP_API + '/Auth/SignUp', SignInData)
+            const res = await axios.post(import.meta.env.VITE_APP_API + '/Auth/SignIn', SignInData)
             .then(res => {
                 if(res.data.Status === "Success"){
                     alert("Login Success")
