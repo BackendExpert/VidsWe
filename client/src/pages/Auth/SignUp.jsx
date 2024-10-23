@@ -18,11 +18,19 @@ const SignUp = () => {
         }));
     };
 
-    const headleSignUp = (e) => {
+    const headleSignUp = async (e) => {
         e.preventDefault()
 
         try{
-            console.log(SignUpData)
+            const res = await axios.post(import.meta.env.VITE_APP_API + '/Auth/SignUp', SignUpData)
+            .then(res => {
+                if(res.data.Status === "Success"){
+                    alert()
+                }
+                else{
+                    alert(res.data.Error)
+                }
+            })
         }
         catch(err){
             console.log(err)
