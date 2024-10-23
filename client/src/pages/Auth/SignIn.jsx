@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import LoginImg from '../../assets/VideoIMGLogin.png'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-
+import secureLocalStorage from 'react-secure-storage'
 
 const SignIn = () => {
     const [SignInData, SetSignData] = useState({
@@ -25,7 +25,11 @@ const SignIn = () => {
             const res = await axios.post(import.meta.env.VITE_APP_API + '/Auth/SignUp', SignInData)
             .then(res => {
                 if(res.data.Status === "Success"){
-                    alert()
+                    alert("Login Success")
+                    localStorage.setItem('token', res.data.Token)
+                    navigate('/Dashboard/home')
+                    secureLocalStorage.setItem('Login1', res.data.Result.email)
+                    secureLocalStorage.setItem('Login2', res.data.Result.Role)    
                 }
                 else{
                     alert(res.data.Error)
@@ -52,7 +56,7 @@ const SignIn = () => {
                             <h1 className="text-xl font-semibold text-center pt-8">SignIn Here</h1>
 
                             <div className="my-4 mx-4">
-                                <form  method="post">
+                                <form onSubmit={headleSubmit}  method="post">
                                     <div className="">
                                         <p className="text-[#AD63FF] text-xl pb-2">Email : </p>
                                         <input type="email" name="email" value={SignInData.email} onChange={handleChange} id="" className="w-full h-12 rounded bg-[#161d30] pl-2 mr-2" required placeholder='Email Address'/>
