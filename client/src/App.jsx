@@ -35,12 +35,20 @@ export default function App() {
     };
   }, [lastScrollY]);
 
+  const shouldShowNavBar = !location.pathname.startsWith("/Dashboard");
+
 
   return (
       <BrowserRouter>
-        <div className={`fixed top-0 w-full z-50 transition-transform duration-300 ${showNavBar ? "translate-y-0" : "-translate-y-full"}`}>
-          <NavBar />
-        </div>
+        {shouldShowNavBar && (
+          <div
+            className={`fixed top-0 w-full z-50 transition-transform duration-300 ${
+              showNavBar ? "translate-y-0" : "-translate-y-full"
+            }`}
+          >
+            <NavBar />
+          </div>
+        )}
         <Routes>
           <Route path="/" element={<HomePage /> } />
           <Route path="/SignIn" element={<SignIn /> } />
@@ -49,7 +57,9 @@ export default function App() {
             <Route path="Home" element={<DashHome /> } />
           </Route>
         </Routes>
-        <Footer />
+        {shouldShowNavBar && (
+            <Footer />
+        )}
       </BrowserRouter>
   )
 }
