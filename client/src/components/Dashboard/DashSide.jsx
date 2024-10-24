@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { BsChevronUp, BsChevronDown, BsGearFill, BsList, BsSpeedometer2, BsX, BsPersonFill, BsPeople, BsCameraVideoFill } from "react-icons/bs";
 import secureLocalStorage from "react-secure-storage";
 import SiteLogo from '../../assets/Logo.png'
+import { LiaPhotoVideoSolid } from "react-icons/lia";
 
 const DashSide = () => {
   const navigate = useNavigate();
@@ -29,8 +30,9 @@ const DashSide = () => {
   // Filtered menu based on roles
   const SideMenu = [
     { id: 1, name: "Dashboard", link: '/Dashboard/Home', icon: <BsSpeedometer2 className='h-5 w-auto fill-[#fdbd44] hover:fill-white' /> },
+    { id: 2, name: "My Channel", link: '/Dashboard/MyChannel', icon: <LiaPhotoVideoSolid className='h-5 w-auto fill-[#fdbd44] hover:fill-white' /> },
     {
-      id: 2, name: "Videos", icon: <BsCameraVideoFill className='h-5 w-auto fill-[#29c770]' />, submenu: [
+      id: 3, name: "Videos", icon: <BsCameraVideoFill className='h-5 w-auto fill-[#29c770]' />, submenu: [
         { id: 1, name: "Create Videos", link: '/Dashboard/NewVideos' },
         { id: 2, name: "Public Videos", link: '/Dashboard/MyPublicVideos' },
         { id: 3, name: "Private Videos", link: '/Dashboard/MyPrivateVideos' },
@@ -38,13 +40,13 @@ const DashSide = () => {
       ]
     },
     {
-      id: 3, name: "Users", icon: <BsPeople className='h-5 w-auto fill-[#00B0FF]' />, submenu: [
+      id: 4, name: "Users", icon: <BsPeople className='h-5 w-auto fill-[#00B0FF]' />, submenu: [
         { id: 1, name: "SuperAdmin", link: '/Dashboard/SuperAdmins' },
         { id: 2, name: "User", link: '/Dashboard/User' },
       ]
     },
-    { id: 6, name: "Profile", link: '/Dashboard/Profile', icon: <BsPersonFill className='h-5 w-auto fill-[#00B000]' /> },
-    { id: 7, name: "Settings", link: '/Dashboard/Settings', icon: <BsGearFill className='h-5 w-auto fill-[#ce4f52]' /> },
+    { id: 5, name: "Profile", link: '/Dashboard/Profile', icon: <BsPersonFill className='h-5 w-auto fill-[#00B000]' /> },
+    { id: 6, name: "Settings", link: '/Dashboard/Settings', icon: <BsGearFill className='h-5 w-auto fill-[#ce4f52]' /> },
   ];
 
   const filteredMenu = SideMenu.filter((menu) => {
