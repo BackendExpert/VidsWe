@@ -76,6 +76,19 @@ const AuthController = {
         catch(err){
             console.log(err)
         }
+    },
+
+    CurrentUserName: async (req, res) => {
+        try{
+            const EmailID = req.params.email
+
+            const GetCurrentUserName = await User.findOne({ email: EmailID })
+
+            return res.json({ Result: GetCurrentUserName.username })
+        }
+        catch(err){
+            console.log(err)
+        }
     }
 };
 

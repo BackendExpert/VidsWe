@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BsPersonCircle } from 'react-icons/bs'
 import { LiaUser, LiaPowerOffSolid  } from "react-icons/lia";
 import { VscSettings } from "react-icons/vsc";
 import { useNavigate } from 'react-router-dom';
 import secureLocalStorage from 'react-secure-storage'
 import { MdNotificationsActive } from "react-icons/md";
+import axios from 'axios';
 
 const DashNav = () => {
     const navigate = useNavigate()
@@ -16,6 +17,15 @@ const DashNav = () => {
     const toggleNavMenu = () => {
         SetOpenMenu(!OpenMenu)  // Toggle the menu state
     }
+
+    // get current user's username
+    const [CurrentUserName, SetCurrentUserName] = useState(null)
+
+    useEffect(() => {
+        axios.get(import.meta.env.VITE_APP_API + `/Auth/GetUsername/${EmailUser}`)
+        .then(res => SetCurrentUserName(res.data.Result))
+        .catch(err => console.log(err))
+    },[])
 
     return (
         <div className="">
@@ -31,17 +41,17 @@ const DashNav = () => {
                             </div>
                             <div className="md:flex hidden " onClick={toggleNavMenu}>                            
                                 <div className="">
-                                    <h1 className="pr-2 pt-0 md:block hidden">JehanKandy</h1>
+                                    <h1 className="pr-2 pt-0 md:block hidden">{CurrentUserName}</h1>
                                     {
                                         (() => {
                                             if(RoleUser === "SuperAdmin"){
                                                 return(
-                                                    <p className="text-[#ce4f52] text-sm">SuperAdmin</p>
+                                                    <p className="text-[#ce4f52] text-sm text-right pr-3">SuperAdmin</p>
                                                 )
                                             }
                                             else if(RoleUser === "User"){
                                                 return(
-                                                    <p className="text-[#fdbd44] text-sm">User</p>
+                                                    <p className="text-[#fdbd44] text-sm text-right pr-3">User</p>
                                                 )
                                             }
                                         })()

@@ -51,7 +51,7 @@ const DashSide = () => {
 
   const filteredMenu = SideMenu.filter((menu) => {
     if (RoleUser === "User") {
-      return !(menu.id === 3);
+      return !(menu.id === 4);
     }
     return true;
   });

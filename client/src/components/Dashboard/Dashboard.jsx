@@ -16,7 +16,7 @@ const Dashboard = () => {
           <div className="w-full min-h-screen bg-[#141c30] text-white">
             <div className="md:flex">
               <div className="w-1/5 fixed overflow-y-auto scrollbar-thin scrollbar-thumb-[#292f45] scrollbar-track-gray-900">
-                <DashSide />
+                  <DashSide />
               </div>
               <div className="md:w-full md:ml-[270px]">
                 <DashNav /> 
@@ -32,7 +32,7 @@ const Dashboard = () => {
       else{
         useEffect(() => {
           localStorage.clear()
-          navigate('/Login')
+          navigate('/SignIn')
         }, [])
       }
 }
